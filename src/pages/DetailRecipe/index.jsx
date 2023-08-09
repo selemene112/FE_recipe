@@ -1,0 +1,141 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import profileImage from './e.png';
+// import './Menu.css'; // Import the combined CSS file
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import { Navbar, Nav, Container } from 'react-bootstrap'; // Import Bootstrap components
+
+const Menu = () => {
+  const [data, setData] = useState([]);
+  const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5NzkwMTJkLTc1YWUtNGU1OC1iZDk1LTY0MmRjMGQwNDVmNCIsIm5hbWEiOiJzZWxlbWVuZSIsImVtYWlsIjoiYWt1c2xhbHVAZ21haWwuY29tIiwiaWF0IjoxNjkxNTUxODM5LCJleHAiOjE2OTE1NTU0Mzl9.-FPE0bQR925I8xrZ7u76a4LyR0VA52630mM5j_IeU_Q`;
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    axios
+      .get('http://localhost:3001/recipe', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return (
+    <div>
+      <Navbar bg="light" expand="lg" fixed="top">
+        <Container>
+          <Navbar.Brand href="#">Recipes</Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarNav" />
+          <Navbar.Collapse id="navbarNav" className="justify-content-end">
+            <Nav>
+              <Nav.Link href="/Menu" active>
+                Home
+              </Nav.Link>
+              <Nav.Link href="/InputMenu">Add Menu</Nav.Link>
+              <Nav.Link href="#">Search Menu</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      <Container style={{ paddingTop: '100px' }}>
+        <div className="d-flex align-items-center justify-content-between my-5 flex-wrap">
+          <div className="d-flex align-items-center gap-3 border-start border-warning border-4 ps-2">
+            <div>
+              <img src={profileImage} alt="" />
+            </div>
+            <div>
+              <div>Ayudia</div>
+              <div className="fw-bold">10 Recipes</div>
+            </div>
+          </div>
+          <div>
+            <div>21 Februari 2023</div>
+          </div>
+        </div>
+        {/*  */}
+
+        <div className="detail-profile-menu border-bottom border-warning border-5">
+          <ul className="list-unstyled d-flex gap-4 fs-3 fw-bold flex-wrap">
+            <li>
+              <a href="/DetailRecipe.html" className="text-decoration-none selected">
+                Recipes
+              </a>
+            </li>
+            <li>
+              <a href="./DetailBookmark.html" className="text-decoration-none">
+                Bookmarked
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-decoration-none">
+                Liked
+              </a>
+            </li>
+          </ul>
+        </div>
+        {/*  */}
+        {/* ... Rest of the content ... */}
+        {data.map((item, index) => (
+          <div key={index} className="row mt-5 align-items-center">
+            <div className="col-sm-12 col-md-6 col-lg-6">
+              <img src={item.photo} alt="" className="w-100" />
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-6">
+              <h2>{item.title}</h2>
+              <p>Ingredients: {item.ingredients}</p>
+              <div className="w-75">
+                <div className="bg-warning rounded p-3 text-center text-white">
+                  {item.likes} Likes - {item.comments} Comments - {item.bookmarks} Bookmarks
+                </div>
+              </div>
+              <div className="d-flex align-items-center gap-5 mt-3 mb-5">
+                <div>
+                  <a href={`/EditMenuPage/${item.id}`}>
+                    <button className="p-3 rounded border-0 btn btn-info text-white">Edit Menu</button>
+                  </a>
+                </div>
+                <div>
+                  <button className="p-3 rounded border-0 btn btn-danger text-white">Delete Menu</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+        {/*  */}
+        <div className="my-5 text-center">
+          <div>
+            <button className="rounded p-2 button-custom text-white border-0">Prev</button> Show 6-10 From 10
+          </div>
+        </div>
+      </Container>
+      <footer className="text-center bg-warning pt-5">
+        <h1 className="mt-5 text-purple">Eat, Cook, Repeat</h1>
+        <p>Share Your Best Recipe By Uploading Here !</p>
+        <div className="row justify-content-end m-0 p-0 mt-5 pt-5 pb-4">
+          <div className="d-flex justify-content-center col-lg-4">
+            <ul className="list-unstyled d-flex gap-3">
+              <li>Product</li>
+              <li>Company</li>
+              <li>Learn More</li>
+              <li>Get In Touch</li>
+            </ul>
+          </div>
+          <div className="col-lg-4 fw-bolder">&copy;Arkademy</div>
+        </div>
+      </footer>
+      {/* ... Modal and Footer ... */}
+    </div>
+  );
+};
+
+export default Menu;
