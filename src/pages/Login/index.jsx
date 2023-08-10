@@ -17,7 +17,39 @@ export default function Login() {
       [name]: value,
     });
   };
+  //================================== Refresh Token ====================================
+  const startTokenRefresh = async () => {
+    const token = localStorage.getItem('authToken');
+    console.log('ini tokennya yang lain');
+    console.log(token);
 
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/Auth',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log('isi dalam Respon');
+      console.log(response);
+
+      // Mengupdate token di localStorage dengan token baru dari respons
+      localStorage.setItem('authToken', response.data.data);
+    } catch (error) {
+      console.error('Token refresh error:', error);
+    }
+
+    // Lakukan pemanggilan berulang setelah 5 detik
+    setTimeout(startTokenRefresh, 15000);
+  };
+
+  // Memulai proses refresh token
+  // startTokenRefresh();
+
+  //============================ For Login ======================================
   const AuthLogin = async (event) => {
     event.preventDefault();
     try {
@@ -25,9 +57,10 @@ export default function Login() {
       console.log(response.data); // Data dari respons
       const token = response.data.data; // mengambil token
       localStorage.setItem('authToken', token); // menyimpan di lokal
+      console.log('ini Token belum di refresh');
       console.log(token);
-      // Lakukan tindakan lanjutan setelah berhasil masuk
-      navigate('/Menu'); // Contoh: Arahkan ke dashboard setelah masuk berhasil
+      startTokenRefresh();
+      // navigate('/Menu'); // Contoh: Arahkan ke dashboard setelah masuk berhasil
       // history.push('/login');
     } catch (error) {
       console.error('Error:', error);
