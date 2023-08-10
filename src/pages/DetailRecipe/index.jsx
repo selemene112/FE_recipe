@@ -7,7 +7,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap'; // Import Bootstrap co
 
 const Menu = () => {
   const [data, setData] = useState([]);
-  const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5NzkwMTJkLTc1YWUtNGU1OC1iZDk1LTY0MmRjMGQwNDVmNCIsIm5hbWEiOiJzZWxlbWVuZSIsImVtYWlsIjoiYWt1c2xhbHVAZ21haWwuY29tIiwiaWF0IjoxNjkxNTUxODM5LCJleHAiOjE2OTE1NTU0Mzl9.-FPE0bQR925I8xrZ7u76a4LyR0VA52630mM5j_IeU_Q`;
+  const token = localStorage.getItem('authToken');
 
   useEffect(() => {
     getData();

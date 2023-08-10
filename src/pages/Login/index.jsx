@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  // const history = useHistory();
   const navigate = useNavigate();
   const [inputData, setInputData] = useState({
     email: '',
@@ -22,8 +23,12 @@ export default function Login() {
     try {
       const response = await axios.post('http://localhost:3001/user/login', inputData);
       console.log(response.data); // Data dari respons
+      const token = response.data.data; // mengambil token
+      localStorage.setItem('authToken', token); // menyimpan di lokal
+      console.log(token);
       // Lakukan tindakan lanjutan setelah berhasil masuk
-      navigate('/'); // Contoh: Arahkan ke dashboard setelah masuk berhasil
+      navigate('/Menu'); // Contoh: Arahkan ke dashboard setelah masuk berhasil
+      // history.push('/login');
     } catch (error) {
       console.error('Error:', error);
       // Lakukan penanganan kesalahan, misalnya menampilkan pesan kesalahan ke pengguna
@@ -52,7 +57,8 @@ export default function Login() {
               <input type="password" id="password" name="password" value={inputData.password} onChange={handleInputChange} placeholder="Password" className="p-3 rounded w-100 mt-3" />
               <label className="check-wrap mt-3">
                 I agree to terms & conditions
-                <input type="checkbox" checked="checked" />
+                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                {/* perubahan CHECK BOX */}
                 <span className="checkmark"></span>
               </label>
               <button type="submit" className="p-3 border-0 bg-warning text-white rounded mt-5 w-100">
