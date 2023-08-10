@@ -8,6 +8,7 @@ import InputMenu from './pages/inputMenu';
 import EditMenuPage from './pages/EditMenu';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import DetailMenu from './pages/Recipe/DetailMenu';
 
 function Menu1() {
   const { id } = useParams();
@@ -25,6 +26,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />
           <Route path="/InputMenu" element={<InputMenu />} />
+          <Route path="/Detail-menu" element={<DetailMenu />} />
+
           <Route path="/EditMenuPage/:id" element={<EditMenuPage />} />
 
           <Route path="/menu-1" element={<Menu1 />} />
