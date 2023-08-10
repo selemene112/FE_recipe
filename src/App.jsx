@@ -7,6 +7,7 @@ import Menu from './pages/DetailRecipe';
 import InputMenu from './pages/inputMenu';
 import EditMenuPage from './pages/EditMenu';
 import Login from './pages/Login';
+// import Logout from './pages/Logout';
 
 function Menu1() {
   const { id } = useParams();
@@ -20,7 +21,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/Menu" replace={true} />} />
           <Route path="/Menu" element={<Menu />} />
+
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/logout" element={<Logout />} /> */}
           <Route path="/InputMenu" element={<InputMenu />} />
           <Route path="/EditMenuPage/:id" element={<EditMenuPage />} />
 

@@ -57,7 +57,7 @@ export default function Login() {
               <input type="password" id="password" name="password" value={inputData.password} onChange={handleInputChange} placeholder="Password" className="p-3 rounded w-100 mt-3" />
               <label className="check-wrap mt-3">
                 I agree to terms & conditions
-                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                {/* <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} /> */}
                 {/* perubahan CHECK BOX */}
                 <span className="checkmark"></span>
               </label>
@@ -73,14 +73,14 @@ export default function Login() {
                 </a>
               </p>
             </div>
-            <div className="mt-5 text-center">
+            {/* <div className="mt-5 text-center">
               <p>
                 Don't have an account?{' '}
                 <a href="./register.html" className="text-decoration-none text-warning">
                   Sign Up
                 </a>
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
