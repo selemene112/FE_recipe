@@ -26,7 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />
           <Route path="/InputMenu" element={<InputMenu />} />
-          <Route path="/Detail-menu" element={<DetailMenu />} />
+          <Route path="/Detail-menu/:id" element={<DetailMenu />} />
 
           <Route path="/EditMenuPage/:id" element={<EditMenuPage />} />
 

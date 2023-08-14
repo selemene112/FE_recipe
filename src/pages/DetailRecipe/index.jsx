@@ -88,7 +88,9 @@ const Menu = () => {
         {data.map((item, index) => (
           <div key={index} className="row mt-5 align-items-center">
             <div className="col-sm-12 col-md-6 col-lg-6">
-              <img src={item.photo} alt="" className="w-100" />
+              <a href={`/Detail-menu/${item.id}`}>
+                <img src={item.photo} alt="" className="w-100" />
+              </a>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-6">
               <h2>{item.title}</h2>
