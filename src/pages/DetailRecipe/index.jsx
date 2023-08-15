@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import profileImage from './e.png';
-// import './Menu.css'; // Import the combined CSS file
+import CustomNavbar from './../../components/nav';
+
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import { Navbar, Nav, Container } from 'react-bootstrap'; // Import Bootstrap components
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const Menu = () => {
   const [data, setData] = useState([]);
@@ -31,21 +32,7 @@ const Menu = () => {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg" fixed="top">
-        <Container>
-          <Navbar.Brand href="#">Recipes</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarNav" />
-          <Navbar.Collapse id="navbarNav" className="justify-content-end">
-            <Nav>
-              <Nav.Link href="/Menu" active>
-                Home
-              </Nav.Link>
-              <Nav.Link href="/InputMenu">Add Menu</Nav.Link>
-              <Nav.Link href="#">Search Menu</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <CustomNavbar />
 
       <Container style={{ paddingTop: '100px' }}>
         <div className="d-flex align-items-center justify-content-between my-5 flex-wrap">
