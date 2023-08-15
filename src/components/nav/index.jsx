@@ -53,17 +53,17 @@ function CustomNavbar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto mb-2 mt-2 mb-lg-0">
               <li className="nav-item me-5">
-                <Link className="nav-link active" to="/menu/home">
+                <Link className="nav-link active" to="/LandingPage">
                   Home
                 </Link>
               </li>
               <li className="nav-item me-5">
-                <Link className="nav-link" to="/menu/addMenu">
+                <Link className="nav-link" to="/InputMenu">
                   Add Menu
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/menu/searchMenu">
+                <Link className="nav-link" to="/Menu">
                   Search Menu
                 </Link>
               </li>

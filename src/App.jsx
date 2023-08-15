@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import EditProfile from './pages/EditProfil';
 import DetailMenu from './pages/Recipe/DetailMenu';
-// import LandingPage from './pages/LandingPage';
+import LandingPage from './pages/LandingPage';
 
 function Menu1() {
   const { id } = useParams();
@@ -22,12 +22,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/Menu" replace={true} />} />
+          <Route path="/" element={<Navigate to="/LandingPage" replace={true} />} />
           <Route path="/Menu" element={<Menu />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />
-          {/* <Route path="/LandingPage" element={<LandingPage />} /> */}
+          <Route path="/LandingPage" element={<LandingPage />} />
 
           <Route path="/InputMenu" element={<InputMenu />} />
           <Route path="/Detail-menu/:id" element={<DetailMenu />} />
