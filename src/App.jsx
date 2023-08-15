@@ -8,6 +8,7 @@ import InputMenu from './pages/inputMenu';
 import EditMenuPage from './pages/EditMenu';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import EditProfile from './pages/EditProfil';
 import DetailMenu from './pages/Recipe/DetailMenu';
 
 function Menu1() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/Logout" element={<Logout />} />
           <Route path="/InputMenu" element={<InputMenu />} />
           <Route path="/Detail-menu/:id" element={<DetailMenu />} />
+          <Route path="/EditProfile/:id" element={<EditProfile />} />
 
           <Route path="/EditMenuPage/:id" element={<EditMenuPage />} />
 
