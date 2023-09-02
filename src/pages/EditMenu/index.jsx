@@ -3,7 +3,8 @@ import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'; // Import the axios library
 import { useParams } from 'react-router-dom';
-let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5NzkwMTJkLTc1YWUtNGU1OC1iZDk1LTY0MmRjMGQwNDVmNCIsIm5hbWEiOiJzZWxlbWVuZSIsImVtYWlsIjoiYWt1c2xhbHVAZ21haWwuY29tIiwiaWF0IjoxNjkxNTUxODM5LCJleHAiOjE2OTE1NTU0Mzl9.-FPE0bQR925I8xrZ7u76a4LyR0VA52630mM5j_IeU_Q`;
+import CustomNavbar from './../../components/nav';
+const token = localStorage.getItem('authToken');
 const containerStyle = {
   width: '100%',
   marginTop: '100px',
@@ -93,19 +94,7 @@ const EditMenuPage = () => {
 
   return (
     <>
-      <Navbar bg="light" expand="lg" fixed="top">
-        <Container>
-          <Navbar.Brand href="#">Edit Menu</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarNav" />
-          <Navbar.Collapse id="navbarNav" className="justify-content-end">
-            <Nav>
-              <Nav.Link href="/Menu">Home</Nav.Link>
-              <Nav.Link href="/InputMenu">Add Menu</Nav.Link>
-              <Nav.Link href="../profil/editProfil.html">Profil</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <CustomNavbar />
 
       <Container style={containerStyle}>
         <Form className="col-sm-12 col-md-9 col-lg-9 mx-auto" onSubmit={postData}>

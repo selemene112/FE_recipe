@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CustomNavbar from './../../components/nav';
 
 const containerStyle = {
   width: '100%',
@@ -48,7 +49,7 @@ const buttonStyle = {
   width: '75%',
 };
 
-let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5NzkwMTJkLTc1YWUtNGU1OC1iZDk1LTY0MmRjMGQwNDVmNCIsIm5hbWEiOiJzZWxlbWVuZSIsImVtYWlsIjoiYWt1c2xhbHVAZ21haWwuY29tIiwiaWF0IjoxNjkxNTUxODM5LCJleHAiOjE2OTE1NTU0Mzl9.-FPE0bQR925I8xrZ7u76a4LyR0VA52630mM5j_IeU_Q`;
+const token = localStorage.getItem('authToken');
 //==================================================================================================
 export default function AddMenu() {
   const navigate = useNavigate();
@@ -115,6 +116,8 @@ export default function AddMenu() {
 
   return (
     <Container style={containerStyle}>
+      <CustomNavbar />
+
       <Form className="col-sm-12 col-md-9 col-lg-9 mx-auto" onSubmit={postData}>
         <label htmlFor="addimage" style={labelStyle}>
           {selectedImage ? ( // Conditional rendering for image display
