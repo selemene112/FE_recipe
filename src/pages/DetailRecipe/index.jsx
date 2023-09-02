@@ -9,10 +9,15 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 const Menu = () => {
   const [data, setData] = useState([]);
   const token = localStorage.getItem('authToken');
+  const [likeCounts, setLikeCounts] = useState({});
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    fetchLikeCounts();
+  }, [data]);
 
   const getData = () => {
     axios
@@ -28,6 +33,26 @@ const Menu = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const fetchLikeCounts = () => {
+    data.forEach((item) => {
+      axios
+        .get(`http://localhost:3001/like/CountLike/${item.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setLikeCounts((prevLikeCounts) => ({
+            ...prevLikeCounts,
+            [item.id]: res.data.data,
+          }));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   };
 
   return (
@@ -84,7 +109,7 @@ const Menu = () => {
               <p>Ingredients: {item.ingredients}</p>
               <div className="w-75">
                 <div className="bg-warning rounded p-3 text-center text-white">
-                  {item.likes} Likes - {item.comments} Comments - {item.bookmarks} Bookmarks
+                  {likeCounts[item.id] ? likeCounts[item.id] : 0} Likes - {item.comments} Comments - {item.bookmarks} Bookmarks
                 </div>
               </div>
               <div className="d-flex align-items-center gap-5 mt-3 mb-5">
