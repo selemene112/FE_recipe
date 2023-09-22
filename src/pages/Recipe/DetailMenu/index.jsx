@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Navbar, Nav, Modal, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import io from 'socket.io-client';
 
 function DetailMenu() {
   const { id } = useParams();
@@ -12,15 +13,37 @@ function DetailMenu() {
   const [comments, setComments] = useState([]);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    // Menginisialisasi koneksi Socket.IO
+    const socketIo = io('http://localhost:3001');
+    setSocket(socketIo);
+
+    // Bersihkan koneksi Socket.IO saat komponen diunmount
+    return () => {
+      if (socketIo) socketIo.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const likedStatus = localStorage.getItem(`liked-${id}`);
     if (likedStatus) {
-      setLiked(JSON.parse(likedStatus)); // Mengembalikan nilai dari localStorage
+      setLiked(JSON.parse(likedStatus));
     }
     Getcomment();
     getdetailMenu();
-  }, []);
+
+    if (socket) {
+      socket.on('new comment', (comment) => {
+        // Update tampilan komentar dengan komentar baru
+        setComments((prevComments) => [...prevComments, comment]);
+      });
+    }
+    return () => {
+      if (socket) socket.off('new comment');
+    };
+  }, [id, socket]);
 
   useEffect(() => {
     // Saat nilai liked berubah, simpan dalam localStorage
@@ -186,14 +209,14 @@ function DetailMenu() {
               {comments.map((comment, index) => (
                 <div key={index} className="komentar">
                   <p>{comment.commentar}</p>
-                  <p>Oleh: {comment.nama}</p>
+                  <p>Oleh: {comment?.nama}</p>
                 </div>
               ))}
 
               <hr className="border border-warning border-2 opacity-100 mt-5" />
             </div>
 
-            <div className="row mt-5">
+            <div className="row mt-5 ">
               <div className="col-md-1"></div>
               <div className="col-md-10 mt-5">
                 <form onSubmit={handleCommentSubmit}>
