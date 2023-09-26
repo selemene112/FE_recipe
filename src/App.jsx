@@ -12,6 +12,7 @@ import EditProfile from './pages/EditProfil';
 import DetailMenu from './pages/Recipe/DetailMenu';
 import LandingPage from './pages/LandingPage';
 import SearchMenu from './pages/SMenu';
+import Bookmark from './pages/Bookmark';
 
 function Menu1() {
   const { id } = useParams();
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/LandingPage" replace={true} />} />
           <Route path="/Menu" element={<Menu />} />
+          <Route path="/Bookmark" element={<Bookmark />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />

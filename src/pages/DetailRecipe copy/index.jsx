@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import profileImage from './e.png';
-import CustomNavbar from './../../components/nav';
+import CustomNavbar from '../../components/nav';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import { Navbar, Nav, Container } from 'react-bootstrap';

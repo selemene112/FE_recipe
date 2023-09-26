@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import profileImage from './e.png';
-import CustomNavbar from './../../components/nav';
+import CustomNavbar from '../../components/nav';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import { Navbar, Nav, Container } from 'react-bootstrap';
@@ -36,7 +36,7 @@ const Menu = () => {
 
   const getData = () => {
     axios
-      .get('http://localhost:3001/recipe/id', {
+      .get('http://localhost:3001/bookmark/allrecipeBookmark', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -141,13 +141,13 @@ const Menu = () => {
         {data.map((item, index) => (
           <div key={index} className="row mt-5 align-items-center">
             <div className="col-sm-12 col-md-6 col-lg-6">
-              <a href={`/Detail-menu/${item.id}`}>
-                <img src={item.photo} alt="" className="w-100" />
+              <a href={`/Detail-menu/${item.recipe_id}`}>
+                <img src={item.recipe_photo} alt="" className="w-100" />
               </a>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-6">
               <h2>{item.title}</h2>
-              <p>Ingredients: {item.ingredients}</p>
+              <p>Ingredients: {item.recipe_ingredients}</p>
               <div className="w-75">
                 <div className="bg-warning rounded p-3 text-center text-white">
                   {likeCounts[item.id] ? likeCounts[item.id] : 0} Likes - {item.comments} Comments - {item.bookmarks} Bookmarks

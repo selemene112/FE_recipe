@@ -14,13 +14,14 @@ function DetailMenu() {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [socket, setSocket] = useState(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [profileImageUrl, setProfileImageUrl] = useState('');
+  const [profilname, setprofilname] = useState('');
 
   useEffect(() => {
-    // Menginisialisasi koneksi Socket.IO
     const socketIo = io('http://localhost:3001');
     setSocket(socketIo);
 
-    // Bersihkan koneksi Socket.IO saat komponen diunmount
     return () => {
       if (socketIo) socketIo.disconnect();
     };
@@ -36,7 +37,6 @@ function DetailMenu() {
 
     if (socket) {
       socket.on('new comment', (comment) => {
-        // Update tampilan komentar dengan komentar baru
         setComments((prevComments) => [...prevComments, comment]);
       });
     }
@@ -50,8 +50,15 @@ function DetailMenu() {
     localStorage.setItem(`liked-${id}`, liked);
   }, [liked]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   const handleLikeClick = () => {
-    // Kirim permintaan ke server tanpa header Authorization dalam data
     axios
       .post(`http://localhost:3001/like/${id}`, null, {
         headers: {
@@ -59,11 +66,10 @@ function DetailMenu() {
         },
       })
       .then((res) => {
-        // Tambahkan kode berikut untuk mengambil jumlah like dari respons
         const newLikeCount = res.data.data;
-        // Perbarui state likeCount dengan jumlah like baru
+
         setLikeCount(newLikeCount);
-        // Perbarui status Like/Unlike berdasarkan respons dari server
+
         setLiked(!liked);
         console.log(res.data);
       })
@@ -98,6 +104,31 @@ function DetailMenu() {
       .then((res) => {
         console.log(res.data);
         setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getprofil();
+  }, []);
+
+  const getprofil = () => {
+    axios
+      .get('http://localhost:3001/user/users/navbar', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log('ini profilnya');
+        console.log(res.data.data);
+        console.log('ini profilnya');
+
+        setProfileImageUrl(res.data.data.profil);
+        setprofilname(res.data.data.nama);
+        dispatch(setUserData(res.data.data));
       })
       .catch((err) => {
         console.log(err);
@@ -148,23 +179,17 @@ function DetailMenu() {
               <div className="col-md-6 headUser">
                 <div className="user d-flex align-items-center ps-5">
                   <div className="photo me-4">
-                    <img src="../asset/img/Profil/ProfilNav.svg" alt="User" width="40" />
+                    <img src={profileImageUrl} alt="User" width="40" />
                   </div>
                   <div className="text">
-                    <p className="mb-0">Ayudia</p>
-                    <p className="mb-0">
-                      <a href="#" className="text-dark">
-                        <strong>10 Recipes</strong>
-                      </a>
-                    </p>
+                    <p className="mb-0">{profilname}</p>
                   </div>
                 </div>
               </div>
               <div className="col-md-6 date">
                 <div className="d-flex align-items-center pe-5">
                   <div className="text ps-5">
-                    <p className="mb-0">21 February 2023</p>
-                    <p className="mb-0">20 Likes - 2 Comments</p>
+                    <div>{currentTime.toLocaleDateString()}</div>
                   </div>
                 </div>
               </div>

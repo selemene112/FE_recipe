@@ -16,10 +16,8 @@ function CustomNavbar() {
   };
 
   const handleLogout = () => {
-    // Hapus token dari penyimpanan lokal
     localStorage.removeItem('authToken');
 
-    // Arahkan pengguna ke halaman login (atau halaman lain)
     navigate('/Menu');
   };
 
@@ -36,7 +34,7 @@ function CustomNavbar() {
       })
       .then((res) => {
         console.log(res.data);
-        dispatch(setUserData(res.data.data)); // Menggunakan action creator untuk menyimpan data pengguna di state
+        dispatch(setUserData(res.data.data));
       })
       .catch((err) => {
         console.log(err);
