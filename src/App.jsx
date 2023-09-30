@@ -13,6 +13,7 @@ import DetailMenu from './pages/Recipe/DetailMenu';
 import LandingPage from './pages/LandingPage';
 import SearchMenu from './pages/SMenu';
 import Bookmark from './pages/Bookmark';
+import Like from './pages/Like';
 
 function Menu1() {
   const { id } = useParams();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<Navigate to="/LandingPage" replace={true} />} />
           <Route path="/Menu" element={<Menu />} />
           <Route path="/Bookmark" element={<Bookmark />} />
+          <Route path="/Like" element={<Like />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />

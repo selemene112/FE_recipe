@@ -36,7 +36,7 @@ const Menu = () => {
 
   const getData = () => {
     axios
-      .get('http://localhost:3001/bookmark/allrecipeBookmark', {
+      .get('http://localhost:3001/like/allLike', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,6 +85,7 @@ const Menu = () => {
           },
         })
         .then((res) => {
+          console.log(res.data);
           setLikeCounts((prevLikeCounts) => ({
             ...prevLikeCounts,
             [item.recipe_id]: res.data.data,
@@ -155,7 +156,7 @@ const Menu = () => {
               </div>
               <div className="d-flex align-items-center gap-5 mt-3 mb-5">
                 <div>
-                  <a href={`/EditMenuPage/${item.recipe_id}`}>
+                  <a href={`/EditMenuPage/${item.id}`}>
                     <button className="p-3 rounded border-0 btn btn-info text-white">Edit Menu</button>
                   </a>
                 </div>

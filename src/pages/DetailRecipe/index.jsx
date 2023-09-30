@@ -125,7 +125,7 @@ const Menu = () => {
               </a>
             </li>
             <li>
-              <a href="./DetailBookmark.html" className="text-decoration-none">
+              <a href="/Bookmark" className="text-decoration-none">
                 Bookmarked
               </a>
             </li>
