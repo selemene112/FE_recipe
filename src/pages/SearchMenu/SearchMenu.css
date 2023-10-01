@@ -1,0 +1,494 @@
+* {
+  font-family: 'Poppins', arial;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+#home {
+  margin-top: 8rem;
+}
+
+#home h1 {
+  font-size: 3rem;
+  color: #2e266f;
+}
+
+.side1 {
+  position: absolute;
+  width: 2rem;
+  height: 50rem;
+  z-index: -99;
+  margin-top: 16rem;
+  right: 0;
+}
+
+.side2 {
+  position: absolute;
+  width: 2rem;
+  height: 50rem;
+  z-index: -99;
+  margin-top: 80rem;
+  right: 0;
+}
+
+.photo img {
+  cursor: pointer;
+}
+
+.inputSearch {
+  width: 27em;
+  height: 3em;
+  /* background-color: #efefef; */
+}
+
+.inputSearch input {
+  border-left: none;
+  font-size: small !important;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.inputSearch input::placeholder {
+  color: #b6b6b6;
+}
+
+.user::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 3rem;
+  background-color: #efc81a;
+  margin-right: 1rem;
+}
+
+.user1 {
+  /* background-color: red; */
+  width: 11rem;
+  /* height: 4rem; */
+}
+
+.user1::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 3rem;
+  background-color: #efc81a;
+  margin-left: 1rem;
+}
+
+.btnSearch {
+  bottom: 0;
+  height: 48px;
+  margin-top: 7.7rem;
+  padding: 0px 2rem;
+  color: white;
+  margin-left: 1rem;
+}
+
+.tagComment {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+.btnHelp {
+  margin-top: 2rem;
+}
+
+.btnHelp button {
+  font-size: small;
+  color: white;
+  padding: 5px 1rem;
+  margin-right: 1.5rem;
+}
+
+.titleDescc {
+  margin-top: 3rem !important;
+}
+
+.titleDescc p {
+  color: #3f3a3a;
+  cursor: pointer;
+}
+
+.titleDescc button {
+  color: white;
+  cursor: pointer;
+  font-size: x-small;
+}
+
+.desc {
+  width: 13rem;
+}
+
+.desc p {
+  font-size: 14px;
+  text-transform: capitalize;
+  color: #3f3a3a;
+}
+
+.headUser {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.date {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.btnSL {
+  margin-left: 2.5rem;
+}
+
+.page {
+  margin-top: 7rem;
+  color: #3f3a3a;
+}
+
+.page h5 {
+  font-size: 1rem;
+}
+
+.homedetail img {
+  width: 45rem;
+  height: 28rem;
+}
+
+.btnlike {
+  background-image: url('../img/iconlike1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+}
+
+.btnlike:focus {
+  background-image: url('../img/iconlike2.png');
+}
+
+.btnsave {
+  background-image: url('../img/iconsave1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  margin-left: 3rem;
+}
+
+.btnsave:focus {
+  background-image: url('../img/iconsave2.png');
+}
+
+.imgCoverr {
+  overflow: hidden;
+  margin-right: 2rem;
+}
+
+.imgCoverr img {
+  transition: scale 400ms;
+}
+
+.imgCoverr img:hover {
+  scale: 120%;
+  cursor: pointer;
+}
+
+.author img {
+  width: 40px;
+  height: 40px;
+}
+
+.btncomment {
+  width: 20rem;
+  height: 2.5rem;
+  font-size: small;
+}
+
+.upload-container {
+  position: relative;
+  width: 100%;
+  height: 25rem;
+  border: 1px solid #ced4da;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-file-upload {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  z-index: 1; /* Tombol di atas gambar preview */
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+/* CSS untuk mengatur gaya div preview */
+.image-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-select {
+  width: 10rem;
+}
+
+.btnpost {
+  width: 15rem;
+}
+
+.navbar {
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+.navbar-scrolled {
+  background-color: #fff;
+}
+
+.form-check-input:checked {
+  background-color: #ffc107;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  border: 1px solid white;
+}
+
+/* CSS Kustom untuk Input */
+.form-control:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+.bg-preview {
+  background-image: url('../img/Rectangle\ 313.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+footer {
+  height: auto;
+  margin-top: 8rem;
+}
+
+footer p {
+  color: #2e266f;
+  font-size: 3rem;
+  font-weight: normal;
+}
+
+footer h6 {
+  color: #707070;
+}
+
+.list {
+  margin-top: 10rem;
+  font-size: small;
+}
+
+.list li {
+  color: #707070;
+}
+
+.text {
+  height: 100%;
+}
+
+.eat {
+  margin-top: 8rem;
+}
+
+.modal-content {
+  background-color: #fff;
+  border: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body {
+  color: #ffc107; /* Warna kuning */
+  font-size: 24px;
+}
+
+.modal-footer {
+  border-top: none;
+  text-align: center;
+}
+
+.btnYes {
+  width: 20rem;
+}
+
+.btnCancel {
+  width: 20rem;
+  background-color: #b31818;
+  border: none;
+}
+
+@media (min-width: 1444px) {
+  body {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 992px) {
+  .homedetail img {
+    width: 35rem;
+    height: 23rem;
+  }
+
+  .tagComment {
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+
+  .comment {
+    padding-left: 0rem;
+  }
+
+  .imgCoverr {
+    margin-right: 0;
+  }
+
+  .fillComment {
+    padding-left: 5rem;
+  }
+
+  .btnSL {
+    margin-left: 0;
+  }
+
+  .btnsave {
+    margin-left: 3.3rem;
+  }
+
+  .btnSearch {
+    width: auto;
+    font-size: medium;
+    padding: 0px 4px;
+    margin-top: 7.8rem !important;
+    margin-left: 1rem;
+  }
+
+  .titleDescc {
+    margin-left: 3rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .headUser {
+    margin-top: 0;
+    justify-self: end;
+  }
+
+  .date {
+    margin-top: 1rem;
+  }
+
+  .homedetail h1 {
+    font-size: 10px;
+  }
+
+  .homedetail img {
+    width: 20rem;
+    height: 15rem;
+  }
+
+  .tagComment {
+    margin: 0px 2rem;
+  }
+
+  .comment {
+    justify-content: center;
+  }
+
+  .fillComment {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .titleDescc {
+    margin-left: 2.3rem !important;
+    margin-bottom: 3rem;
+    margin-top: 1rem !important;
+  }
+
+  .side1 {
+    display: none;
+  }
+
+  .side2 {
+    display: none;
+  }
+
+  #home h1 {
+    font-size: 1.7rem !important;
+    color: #2e266f;
+  }
+
+  .inputSearch {
+    width: 14rem !important;
+  }
+
+  .btnsave {
+    margin-left: 1rem;
+  }
+
+  .btnSearch {
+    width: auto;
+    font-size: medium;
+    padding: 0px 4px;
+    margin-top: 4.6rem !important;
+  }
+
+  .btnHelp {
+    margin-top: 1rem;
+  }
+
+  .btnHelp button {
+    margin-right: 1.2rem;
+  }
+
+  .date {
+    display: flex;
+    justify-content: start;
+  }
+}

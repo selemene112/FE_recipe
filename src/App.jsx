@@ -11,9 +11,10 @@ import Logout from './pages/Logout';
 import EditProfile from './pages/EditProfil';
 import DetailMenu from './pages/Recipe/DetailMenu';
 import LandingPage from './pages/LandingPage';
-import SearchMenu from './pages/SMenu';
+import SearchMenu1 from './pages/SMenu';
 import Bookmark from './pages/Bookmark';
 import Like from './pages/Like';
+import SearchMenu from './pages/SearchMenu';
 
 function Menu1() {
   const { id } = useParams();
@@ -29,6 +30,7 @@ function App() {
           <Route path="/Menu" element={<Menu />} />
           <Route path="/Bookmark" element={<Bookmark />} />
           <Route path="/Like" element={<Like />} />
+          <Route path="/SearchMenu" element={<SearchMenu />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />
@@ -39,7 +41,7 @@ function App() {
           <Route path="/EditProfile/:id" element={<EditProfile />} />
           <Route path="/EditMenuPage/:id" element={<EditMenuPage />} />
 
-          <Route path="/SearchMenu" element={<SearchMenu />} />
+          <Route path="/SearchMenu1" element={<SearchMenu />} />
 
           <Route path="/menu-1" element={<Menu1 />} />
         </Routes>

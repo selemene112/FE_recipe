@@ -120,7 +120,7 @@ const Menu = () => {
         <div className="detail-profile-menu border-bottom border-warning border-5">
           <ul className="list-unstyled d-flex gap-4 fs-3 fw-bold flex-wrap">
             <li>
-              <a href="/DetailRecipe.html" className="text-decoration-none selected">
+              <a href="/Menu" className="text-decoration-none selected">
                 Recipes
               </a>
             </li>
@@ -130,7 +130,7 @@ const Menu = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="text-decoration-none">
+              <a href="Like" className="text-decoration-none">
                 Liked
               </a>
             </li>

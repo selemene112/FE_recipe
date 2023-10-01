@@ -35,7 +35,7 @@ function EditProfile() {
     } catch (error) {
       console.log(error);
     }
-    navigate('/Menu');
+    // navigate('/Menu');
   };
 
   const onChange = (e) => {
@@ -57,7 +57,7 @@ function EditProfile() {
   return (
     <div>
       <CustomNavbar />
-      {/* <form onSubmit={editdata}> */}
+
       <section className="container w-100 d-flex justify-content-center align-items-center" style={{ paddingTop: '100px' }}>
         <div className="my-5 col-sm-12 col-md-6 col-lg-6">
           <form onSubmit={editdata}>
