@@ -85,33 +85,24 @@ export default function AddMenu() {
         console.log(err);
       });
   };
-  const [selectedImage, setSelectedImage] = useState(null); // State to store selected image
+  const [selectedImage, setSelectedImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const postData1 = (e) => {
-    e.preventDefault();
-    // Lakukan posting data ke server atau tindakan sesuai kebutuhan
-  };
 
   const onChange = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
+
   const onChangePhoto = (e) => {
-    setPhoto(e.target.files[0]);
-    e.target.files[0] && setInputData({ ...inputData, photo: URL.createObjectURL(e.target.files[0]) });
-    console.log(e.target.files);
-  };
-  const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setSelectedImage(URL.createObjectURL(file));
+    setPhoto(file);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setSelectedImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -119,19 +110,15 @@ export default function AddMenu() {
       <CustomNavbar />
 
       <Form className="col-sm-12 col-md-9 col-lg-9 mx-auto" onSubmit={postData}>
-        <label htmlFor="addimage" style={labelStyle}>
-          {selectedImage ? ( // Conditional rendering for image display
-            <img src={inputData.photo} alt="Selected" style={{ maxWidth: '100%', maxHeight: '200px' }} />
-          ) : (
-            'Add Photo'
-          )}
+        <label className="border border-dark bg-light" htmlFor="addimage" style={labelStyle}>
+          {selectedImage ? <img src={selectedImage} alt="Selected" style={{ maxWidth: '200px', maxHeight: '200px' }} /> : 'Add Photo'}
           <input type="file" name="addimage" id="addimage" hidden onChange={onChangePhoto} />
         </label>
-        <input type="text" name="title" placeholder="Title" style={inputStyle} value={inputData.title} onChange={onChange} />
-        <div style={textareaStyle} className="addingredients">
+        <input className="border border-dark bg-light" type="text" name="title" placeholder="Title" style={inputStyle} value={inputData.title} onChange={onChange} />
+        <div className="border border-dark bg-light addingredients " style={textareaStyle}>
           <textarea name="ingredients" placeholder="Ingredients" style={{ ...textareaStyle, height: '300px' }} value={inputData.ingredients} onChange={onChange}></textarea>
         </div>
-        <div style={{ ...selectStyle, marginTop: '1.5rem' }} className="mt-5 col-sm-12 col-md-6">
+        <div className=" mt-5 col-sm-12 col-md-6 " style={{ ...selectStyle, marginTop: '1.5rem' }}>
           <Form.Select style={selectStyle} aria-label="Floating label select example" value={inputData.category} onChange={onChange} name="category">
             <option value="" disabled>
               Category
@@ -147,8 +134,6 @@ export default function AddMenu() {
           </Button>
         </div>
       </Form>
-
-      {/* Modal code here */}
     </Container>
   );
 }

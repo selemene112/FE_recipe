@@ -9,7 +9,7 @@ function CustomNavbar() {
   const token = localStorage.getItem('authToken');
   const dispatch = useDispatch();
   const isOpen = useSelector(selectNavbarIsOpen);
-  const userData = useSelector(selectUserData); // Menggunakan selector
+  const userData = useSelector(selectUserData);
 
   const handleToggle = () => {
     dispatch(toggleNavbar());
@@ -42,13 +42,14 @@ function CustomNavbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light --bs-light-text-emphasis fixed-top">
+    <nav className="navbar navbar-expand-lg fixed-top">
       <div className="container mt-3">
         <div className="burger">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
+            <img src="/Logomama.png" alt="" style={{ width: '50px', height: '50px' }} />
             <ul className="navbar-nav me-auto mb-2 mt-2 mb-lg-0">
               <li className="nav-item me-5">
                 <Link className="nav-link active" to="/LandingPage">

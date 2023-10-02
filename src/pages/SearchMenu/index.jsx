@@ -8,11 +8,14 @@ import './SearchMenu.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 const SearchMenu = () => {
+  const [data, setData] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const token = localStorage.getItem('authToken');
+  const [likeCounts, setLikeCounts] = useState({});
 
   const [searchBy, setSearchBy] = useState('');
   const handleCategoryFilterChange = (value) => {
@@ -28,7 +31,6 @@ const SearchMenu = () => {
     const { value } = event.target;
     setSearchValue(value);
 
-    // Tambahkan pemanggilan fungsi pencarian di sini
     searchRecipes(value);
   };
 
@@ -41,10 +43,11 @@ const SearchMenu = () => {
         params: {
           searchBy,
           search: searchText,
-          page: 1, // Reset halaman ke 1 setiap kali mencari
+          page: 1,
         },
       })
       .then((res) => {
+        setData(res.data.data);
         console.log(res.data);
         setFilteredRecipes(res.data.data);
         setTotalPages(res.data.pagination.totalPage);
@@ -54,9 +57,42 @@ const SearchMenu = () => {
       });
   };
 
+  const fetchLikeCounts = () => {
+    const likeCountsCopy = { ...likeCounts };
+
+    data.forEach((item) => {
+      axios
+        .get(`http://localhost:3001/like/CountLike/${item.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setLikeCounts((prevLikeCounts) => ({
+            ...prevLikeCounts,
+            [item.id]: res?.data?.data,
+          }));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  };
+
+  // useEffect(() => {
+  //   fetchLikeCounts();
+  // }, [filteredRecipes]);
+
   useEffect(() => {
-    searchRecipes(searchValue); // Pencarian awal saat komponen dimuat
-  }, [searchValue, searchBy]); // Jadikan searchBy sebagai dependensi untuk memastikan perubahan kategori juga memicu pemanggilan pencarian ulang
+    searchRecipes(searchValue);
+  }, [searchValue, searchBy]);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      fetchLikeCounts();
+    }
+  }, [data, token]);
 
   return (
     <>
@@ -118,9 +154,10 @@ const SearchMenu = () => {
                     {item.ingredients.split(' ').length > 8 ? getFirst10Words(item.ingredients) + ' ...' : item.ingredients}
                   </p>
                 </div>
-                <button type="button" className="btn btn-warning">
-                  10 Likes - 12 Comment - 3 Bookmark
-                </button>
+                <div className="bg-warning rounded p-3 text-center text-white">
+                  {likeCounts[item.id] !== undefined ? `${likeCounts[item.id]} Suka - ` : '0 Suka - '}
+                  {item.comments} Komentar - {item.bookmarks} Bookmark
+                </div>
                 <div className="author mt-3 d-flex">
                   <img src={item.user_profile} alt="Search" className="me-3 rounded-circle" />
                   <h6 className="mt-2 text-capitalize">{item.user_name}</h6>
