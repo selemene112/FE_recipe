@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Navbar, Nav, Modal, Button } from 'react-bootstrap';
+import CustomNavbar from '../../../components/nav';
+import { Container, Navbar, Nav, Modal, Button, Card } from 'react-bootstrap';
+import Image from 'react-bootstrap/Image';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 
@@ -20,43 +22,48 @@ function DetailMenu() {
 
   useEffect(() => {
     const socketIo = io('http://localhost:3001');
+    console.log('Socket.io connection successful.');
     setSocket(socketIo);
 
     return () => {
       if (socketIo) socketIo.disconnect();
+      console.log('Socket.io disconnected.');
     };
   }, []);
 
   useEffect(() => {
-    const likedStatus = localStorage.getItem(`liked-${id}`);
-    if (likedStatus) {
-      setLiked(JSON.parse(likedStatus));
-    }
     Getcomment();
     getdetailMenu();
 
+    const handleNewComment = (comment) => {
+      setComments((prevComments) => [...prevComments, comment]);
+    };
+
     if (socket) {
-      socket.on('new comment', (comment) => {
-        setComments((prevComments) => [...prevComments, comment]);
-      });
+      socket.on('new comment', handleNewComment);
+      console.log(socket);
     }
+
     return () => {
-      if (socket) socket.off('new comment');
+      if (socket) socket.off('new comment', handleNewComment);
     };
   }, [id, socket]);
 
   useEffect(() => {
-    // Saat nilai liked berubah, simpan dalam localStorage
-    localStorage.setItem(`liked-${id}`, liked);
-  }, [liked]);
+    const handleNewLike = (data) => {
+      setLiked(data.newLikeStatus);
+      setLikeCount(data.newLikeCount);
+    };
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+    if (socket) {
+      socket.on('like', handleNewLike);
+      console.log('Listening to like events');
+    }
 
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => {
+      if (socket) socket.off('like', handleNewLike);
+    };
+  }, [socket]);
 
   const handleLikeClick = () => {
     axios
@@ -67,11 +74,17 @@ function DetailMenu() {
       })
       .then((res) => {
         const newLikeCount = res.data.data;
+        const newLikeStatus = res.data.status === 'Like';
 
+        // Emit the 'like' event to update other clients
+        if (socket) {
+          socket.emit('like', { id, newLikeCount, newLikeStatus });
+        }
+
+        setLiked(newLikeStatus);
         setLikeCount(newLikeCount);
-
-        setLiked(!liked);
         console.log(res.data);
+        console.log(res.data.status);
       })
       .catch((err) => {
         console.log(err);
@@ -138,13 +151,12 @@ function DetailMenu() {
   // =============================== Update Comment ===============================
 
   const handleCommentChange = (event) => {
-    setNewComment(event.target.value); // Update new comment state
+    setNewComment(event.target.value);
   };
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
 
-    // Send the new comment to the API
     axios
       .post(
         `http://localhost:3001/com/${id}`,
@@ -159,9 +171,9 @@ function DetailMenu() {
       )
       .then((res) => {
         console.log(res.data);
-        // Update the comments state with the new comment
+
         setComments([...comments, { commentar: newComment, nama: 'Your Name' }]);
-        // Clear the new comment input
+
         setNewComment('');
       })
       .catch((err) => {
@@ -171,7 +183,7 @@ function DetailMenu() {
 
   return (
     <>
-      {/* <CustomNavbar /> */}
+      <CustomNavbar />
       <div>
         <section id="home" style={{ marginTop: '120px' }}>
           <Container>
@@ -196,18 +208,10 @@ function DetailMenu() {
             </div>
 
             <div className="row">
-              <div className="col-md-6 headUser">
-                <div className="user d-flex align-items-center ps-5">{/* User photo and text */}</div>
-              </div>
-              <div className="col-md-6 date">
-                <div className="d-flex align-items-center pe-5">{/* Date and likes info */}</div>
-              </div>
-            </div>
-            <div className="row">
               <div className="col text-center mt-5 homedetail">
                 <h1 className="mt-5">{data.title}</h1>
                 <a href={data.photo} target="_blank" rel="noopener noreferrer">
-                  <img src={data.photo} alt="Recipe" className="mt-5 rounded-3" />
+                  <img src={data.photo} alt="Recipe" className="mt-5 rounded-3" style={{ width: '500px', height: '300px' }} />
                 </a>
               </div>
               <h1 className="mt-5 text-left">Ingredients</h1>
@@ -226,27 +230,35 @@ function DetailMenu() {
                 </div>
               </div>
             </div>
-            {/* UNTUK COMMENT  */}
-            <div className="row mt-5 tagComment">
-              <hr className="border border-warning border-2 opacity-100 mb-5" />
-              {/* Loop through the comments */}
+            <hr className="border border-warning border-5 opacity-100 mb-5" />
 
+            <div className="row mt-5 tagComment border-2 border-warning" style={{ maxHeight: '300px', overflowY: 'auto' }}>
               {comments.map((comment, index) => (
-                <div key={index} className="komentar">
-                  <p>{comment.commentar}</p>
-                  <p>Oleh: {comment?.nama}</p>
+                <div key={index} className="bg-light border border-warning p-3 mb-3">
+                  <div className="d-flex align-items-center">
+                    <div className="ml-3" style={{ marginRight: '10px' }}>
+                      <Image src={comment.user_profile} alt="User" width="40" roundedCircle />
+                      <p className="mt-2">Oleh: {comment?.nama}</p>
+                    </div>
+                    <div className="d-flex bg-warning vr opacity-100" style={{ height: '100px', width: '5px' }}></div>
+                    <div className="ml-2 p-2 bg-light">
+                      <p>{comment.commentar}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
 
               <hr className="border border-warning border-2 opacity-100 mt-5" />
             </div>
 
-            <div className="row mt-5 ">
+            <hr className="border border-warning border-5 opacity-100 mb-5" />
+
+            <div className="row mt-2 ">
               <div className="col-md-1"></div>
-              <div className="col-md-10 mt-5">
+              <div className="col-md-10 mt-1">
                 <form onSubmit={handleCommentSubmit}>
                   <div className="form-floating text-center">
-                    <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ height: '200px' }} value={newComment} onChange={handleCommentChange} required></textarea>
+                    <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ height: '100px' }} value={newComment} onChange={handleCommentChange} required></textarea>
                     <label htmlFor="floatingTextarea">Your comment here!</label>
                     <button type="submit" className="btn btn-warning mt-4 text-light btncomment">
                       Send a comment

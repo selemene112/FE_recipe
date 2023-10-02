@@ -61,7 +61,7 @@ function CustomNavbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Menu">
+                <Link className="nav-link" to="/searchMenu">
                   Search Menu
                 </Link>
               </li>
