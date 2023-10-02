@@ -19,6 +19,7 @@ function DetailMenu() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [profileImageUrl, setProfileImageUrl] = useState('');
   const [profilname, setprofilname] = useState('');
+  const [Bookmark, setBookmark] = useState(false);
 
   useEffect(() => {
     const socketIo = io('http://localhost:3001');
@@ -64,6 +65,8 @@ function DetailMenu() {
       if (socket) socket.off('like', handleNewLike);
     };
   }, [socket]);
+
+  //========================================================================== GET API ====================================================================
 
   const handleLikeClick = () => {
     axios
@@ -147,7 +150,45 @@ function DetailMenu() {
         console.log(err);
       });
   };
+  const handleBookmarkClick = () => {
+    // const url = `http://localhost:3001/bookmark/${id}`;
 
+    // axios({
+    //   method: Bookmark ? 'delete' : 'post',
+    //   url: url,
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     setBookmark((prevBookmark) => !prevBookmark);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    axios
+      .post(`http://localhost:3001/bookmark/${id}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        const Book1 = res.data.status === 'Bookmark';
+
+        // Emit the 'like' event to update other clients
+
+        setBookmark(Book1);
+
+        console.log(res.data);
+        console.log(res.data.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //========================================================================== END GET API ====================================================================
   // =============================== Update Comment ===============================
 
   const handleCommentChange = (event) => {
@@ -226,7 +267,9 @@ function DetailMenu() {
                   <span className="ms-3">Likes: {likeCount}</span>
                 </div>
                 <div>
-                  <button className="p-3 rounded border-0 btn btn-danger text-white">Add Bookmark</button>
+                  <button onClick={handleBookmarkClick} className="p-3 rounded border-0 btn btn-danger text-white">
+                    {Bookmark ? 'Unbookmark' : 'Add Bookmark'}
+                  </button>
                 </div>
               </div>
             </div>
