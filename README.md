@@ -1,4 +1,15 @@
 
+# Mama Recipe Web
+<div align="center">
+<a href="https://github.com/selemene112/FE_recipe/">
+    <img src="https://i.ibb.co/ZcsX3g3/fix.png" alt="Logo" width="150" height="150">
+</a>
+<p style="text-align: center;">
+   This application is used to display all kinds of recipes that have been created and is equipped with chat and like features
+
+where every user can like and comment on every existing recipe
+</p>
+</div>
 
 ## Installation
 This Link Repo BE if You need Install 
@@ -20,21 +31,21 @@ for install All Package
 
 | Login Form|
 | ------------- |
-|[![Login.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696245015/RecipeFix/Screenshot_from_2023-10-02_19-09-37_c0jv6e.png)]
+|![Login.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696245015/RecipeFix/Screenshot_from_2023-10-02_19-09-37_c0jv6e.png)
 This already uses a system refresh token |
 
 | Search Menu|
 | ------------- |
-|[![Search Menu](https://res.cloudinary.com/dkucquakt/image/upload/v1696246213/RecipeFix/Screenshot_from_2023-10-02_19-29-36_u8oxjm.png)
+|![Search Menu](https://res.cloudinary.com/dkucquakt/image/upload/v1696246213/RecipeFix/Screenshot_from_2023-10-02_19-29-36_u8oxjm.png)
 Some of the advantages of this feature are:
 1. Search Menu can be done by selecting several items based on title or ingredients
-2. The Like value can change dynamically depending on the number of users who like]
+2. The Like value can change dynamically depending on the number of users who like
 This already uses a system refresh token |
 
 
 | Like | Unlike |
 | ------------- | ------------- |
-| [![Like.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696247794/RecipeFix/Screenshot_from_2023-10-02_19-56-09_uigexh.png)] | [![Unlike.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696247905/RecipeFix/Screenshot_from_2023-10-02_19-58-05_pkncpf.png)]|
+| ![Like.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696247794/RecipeFix/Screenshot_from_2023-10-02_19-56-09_uigexh.png)] | [![Unlike.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696247905/RecipeFix/Screenshot_from_2023-10-02_19-58-05_pkncpf.png)|
 
 In the image above, the 1st image shows that the recipe has not yet liked the recipe and after the like is done, the button will automatically change by itself.
 
@@ -42,10 +53,18 @@ https://res.cloudinary.com/dkucquakt/image/upload/v1696248757/RecipeFix/Screensh
 
 | Commentar |
 | ------------- |
-|[![Comentar.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696248757/RecipeFix/Screenshot_from_2023-10-02_20-12-21_nylyos.png)
+|![Comentar.png](https://res.cloudinary.com/dkucquakt/image/upload/v1696248757/RecipeFix/Screenshot_from_2023-10-02_20-12-21_nylyos.png)
 |
 
 This is a comment feature that uses WEB SOCKET to carry out real-time data transactions
+
+In the future, I plan to develop a project to handle payments so that they can be connected directly to the original banking system
+If you are interested in this project further, you can contact me on some of my social media
+
+Email: Ariyanda2107@gmail.com
+
+Linkedin: https://www.linkedin.com/in/muhammad-ariyanda-zulyadiansyah-18141426a/
+
 
 
 
