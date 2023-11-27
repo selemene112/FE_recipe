@@ -16,7 +16,7 @@ where every user can like and comment on every existing recipe
     <a href="https://github.com/selemene112/FE_recipe"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://fe-recipe-three.vercel.app/login">View Demo</a>
+    <a href="https://fe-recipe-three.vercel.app">View Demo</a>
     .
     <a href="https://github.com/selemene112/FE_recipe/issues">Report Bug</a>
     .
