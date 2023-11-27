@@ -4,10 +4,23 @@
 <a href="https://github.com/selemene112/FE_recipe/">
     <img src="https://i.ibb.co/ZcsX3g3/fix.png" alt="Logo" width="150" height="150">
 </a>
+
 <p style="text-align: center;">
    This application is used to display all kinds of recipes that have been created and is equipped with chat and like features
 
 where every user can like and comment on every existing recipe
+</p>
+
+<br/>
+    <br/>
+    <a href="https://github.com/selemene112/FE_recipe"><strong>Explore the docs »</strong></a>
+    <br/>
+    <br/>
+    <a href="https://fe-recipe-three.vercel.app/login">View Demo</a>
+    .
+    <a href="https://github.com/selemene112/FE_recipe/issues">Report Bug</a>
+    .
+    <a href="https://github.com/selemene112/FE_recipe/issues">Request Feature</a>
 </p>
 </div>
 
