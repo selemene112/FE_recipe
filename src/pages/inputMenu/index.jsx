@@ -79,7 +79,7 @@ export default function AddMenu() {
       })
       .then((res) => {
         console.log(res);
-        navigate('/');
+        navigate('/menu');
       })
       .catch((err) => {
         console.log(err);

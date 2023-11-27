@@ -153,7 +153,7 @@ const Menu = () => {
                   {likeCounts[item.recipe_id] ? likeCounts[item.recipe_id] : 0} Likes - {item.comments} Comments - {item.bookmarks} Bookmarks
                 </div>
               </div>
-              <div className="d-flex align-items-center gap-5 mt-3 mb-5">
+              {/* <div className="d-flex align-items-center gap-5 mt-3 mb-5">
                 <div>
                   <a href={`/EditMenuPage/${item.recipe_id}`}>
                     <button className="p-3 rounded border-0 btn btn-info text-white">Edit Menu</button>
@@ -162,7 +162,7 @@ const Menu = () => {
                 <div>
                   <button className="p-3 rounded border-0 btn btn-danger text-white">Delete Menu</button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         ))}

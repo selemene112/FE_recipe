@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'; // Import the axios library
 import { useParams } from 'react-router-dom';
 import CustomNavbar from './../../components/nav';
+import { useNavigate } from 'react-router-dom';
 const token = localStorage.getItem('authToken');
 const containerStyle = {
   width: '100%',
@@ -51,6 +52,7 @@ const buttonStyle = {
 };
 
 const EditMenuPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [photo, setPhoto] = useState(null);
   const [inputData, setInputData] = useState({
@@ -77,7 +79,7 @@ const EditMenuPage = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(response);
+      navigate('/menu');
     } catch (error) {
       console.log(error);
     }

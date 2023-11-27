@@ -18,7 +18,7 @@ function CustomNavbar() {
   const handleLogout = () => {
     localStorage.removeItem('authToken');
 
-    navigate('/Menu');
+    navigate('/login');
   };
 
   useEffect(() => {

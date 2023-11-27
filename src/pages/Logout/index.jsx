@@ -9,7 +9,7 @@ export default function Logout() {
     localStorage.removeItem('authToken');
 
     // Arahkan pengguna ke halaman login (atau halaman lain)
-    navigate('/Menu');
+    navigate('/login');
   };
 
   return (
