@@ -24,6 +24,36 @@ where every user can like and comment on every existing recipe
 </p>
 </div>
 
+
+## Table Of Contents
+
+- [About the Project](#about-the-project)
+- [Built With](#built-with)
+- [Installation](#installation)
+- [Related Project](#related-project)
+- [Contact](#contact)
+
+
+
+ ## About The Project
+
+<p align="center">
+ Welcome to the "Food Recipes" project! This project aims to create a platform that allows users to save, create and share food recipes easily. The platform is built using React JS and is designed to be responsive so it can be accessed from a variety of devices.
+</p>
+
+## Built With
+
+This app was built with some technologies below:
+
+- CSS
+- Javascript
+- React
+- Axios
+- Redux
+- Bootstrap
+- React-botstrap
+- React-toastify
+
 ## Installation
 This Link Repo BE if You need Install 
 ```
@@ -74,9 +104,22 @@ This is a comment feature that uses WEB SOCKET to carry out real-time data trans
 In the future, I plan to develop a project to handle payments so that they can be connected directly to the original banking system
 If you are interested in this project further, you can contact me on some of my social media
 
-Email: Ariyanda2107@gmail.com
 
-Linkedin: https://www.linkedin.com/in/muhammad-ariyanda-zulyadiansyah-18141426a/
+## Related Project
+
+:rocket: [`Backend Mama Recipe`](https://github.com/selemene112/BE_recipe)
+
+:rocket: [`Frontend Mama Recipe`](https://github.com/selemene112/FE_recipe/)
+
+:rocket: [`Mobile Mama Recipe`](https://github.com/selemene112/RecipeAndroid)
+
+## Contact
+
+- Email : [`Ariyanda2107@gmail.com`](mailto:Ariyanda2107@gmail.com)
+
+- LinkedIn : [`https://www.linkedin.com/in/muhammad-ariyanda-zulyadiansyah-18141426a/`](https://www.linkedin.com/in/muhammad-ariyanda-zulyadiansyah-18141426a/)
+
+- GitHub : [`https://github.com/selemene112`](https://github.com/selemene112)
 
 
 
